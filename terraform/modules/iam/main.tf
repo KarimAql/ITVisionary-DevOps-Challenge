@@ -137,6 +137,9 @@ resource "aws_iam_role_policy" "cicd_inline" {
           "application-autoscaling:PutScalingPolicy",
           "application-autoscaling:DeleteScalingPolicy",
           "application-autoscaling:DescribeScalingPolicies",
+          "application-autoscaling:ListTagsForResource",
+          "application-autoscaling:TagResource",
+          "application-autoscaling:UntagResource",
         ]
         Resource = "*"
       },
@@ -193,6 +196,10 @@ resource "aws_iam_role_policy" "cicd_inline" {
           "cloudwatch:ListTagsForResource",
           "cloudwatch:TagResource",
           "cloudwatch:UntagResource",
+          "cloudwatch:GetDashboard",
+          "cloudwatch:PutDashboard",
+          "cloudwatch:DeleteDashboards",
+          "cloudwatch:ListDashboards",
         ]
         Resource = "*"
       },
@@ -211,6 +218,8 @@ resource "aws_iam_role_policy" "cicd_inline" {
           "sns:TagResource",
           "sns:UntagResource",
           "sns:ListTagsForResource",
+          "sns:GetSubscriptionAttributes",
+          "sns:SetSubscriptionAttributes",
         ]
         Resource = "arn:aws:sns:${var.aws_region}:${var.account_id}:${var.project_name}-${var.environment}-*"
       },
@@ -319,6 +328,8 @@ resource "aws_iam_role_policy" "cicd_inline" {
           "elasticloadbalancing:DescribeRules",
           "elasticloadbalancing:ModifyRule",
           "elasticloadbalancing:SetSecurityGroups",
+          "elasticloadbalancing:DescribeListenerAttributes",
+          "elasticloadbalancing:ModifyListenerAttributes",
         ]
         Resource = "*"
       },
