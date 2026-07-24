@@ -1,0 +1,35 @@
+# Terraform
+**/.terraform/
+*.tfstate
+*.tfstate.*
+# Only ignore the root tfvars (local overrides) — environment tfvars are committed
+terraform/terraform.tfvars
+!terraform/environments/*.tfvars
+.terraform.lock.hcl
+tfplan
+*.tfplan
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+
+# Checkov
+.checkov/
+checkov-results.sarif
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Docker
+.dockerignore
+
+# IDE / OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
