@@ -74,7 +74,8 @@ jobs:
           directory: terraform
           framework: terraform
           # Severity filtering requires a Prisma Cloud API key, so I removed the filter
-          soft_fail: false
+          # switched soft_fail to true since all findings now fail the pipeline since we disabled filtering.
+          soft_fail: true
           output_format: sarif
           output_file_path: results/
           download_external_modules: false
