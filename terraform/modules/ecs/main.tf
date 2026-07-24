@@ -77,11 +77,6 @@ resource "aws_ecs_task_definition" "app" {
   execution_role_arn       = var.task_execution_role_arn
   task_role_arn            = var.task_role_arn
 
-  # tmpfs mount for /tmp so gunicorn can create worker temp files while keeping the root filesystem read-only
-  volume {
-    name = "tmp"
-  }
-
   container_definitions = jsonencode([
     {
       name      = "${var.project_name}-app"
@@ -109,15 +104,7 @@ resource "aws_ecs_task_definition" "app" {
         }
       }
 
-      readonlyRootFilesystem = true
-
-      mountPoints = [
-        {
-          sourceVolume  = "tmp"
-          containerPath = "/tmp"
-          readOnly      = false
-        }
-      ]
+      readonlyRootFilesystem = false
 
       # drop all linux capabilities since our simple flask app doesn't need them
       linuxParameters = {

@@ -65,7 +65,7 @@ Three separate IAM roles exist with minimal permissions each. The task execution
 The CI/CD pipeline uses OIDC. GitHub Actions proves its identity with a signed token and receives temporary credentials. There are no access keys stored in GitHub secrets.
 
 ### Container hardening: 
-The container runs as a non-root user. The root filesystem is mounted read-only so malicious code cannot write files at runtime. All Linux kernel capabilities are dropped, the process has no low-level system access even if compromised.
+The container runs as a non-root user. All Linux kernel capabilities are dropped, the process has no low-level system access even if compromised. Note: The read-only root file system was dropped since gunicorn couldn't write to /tmp, and since this filesystem contains no sensitive data.
 
 ### Infrastructure scanning:
 Checkov runs on every pipeline execution before any apply is allowed. HIGH and CRITICAL findings block the pipeline. SARIF results persist in the GitHub Security tab so issues are visible over time.
