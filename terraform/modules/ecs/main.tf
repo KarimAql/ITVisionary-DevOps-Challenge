@@ -124,12 +124,6 @@ resource "aws_ecs_task_definition" "app" {
         capabilities = {
           drop = ["ALL"]
         }
-        tmpfs = [
-          {
-            containerPath = "/tmp"
-            size          = 64
-          }
-        ]
       }
 
       healthCheck = {
