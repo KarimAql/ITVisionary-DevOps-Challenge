@@ -18,7 +18,7 @@ ecs_min_capacity        = 1
 ecs_max_capacity        = 2
 cpu_scale_out_threshold = 70
 
-github_org_repo        = "KarimAql/ITVisionary-DevOps-Challenge"
+github_org_repo        = "KarimAql@101567931/ITVisionary-DevOps-Challenge@1311232220"
 terraform_state_bucket = "karim-state-bucket"
 
 health_check_path   = "/health"
