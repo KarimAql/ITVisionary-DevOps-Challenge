@@ -83,10 +83,10 @@ resource "aws_cloudwatch_dashboard" "main" {
         width  = 12
         height = 6
         properties = {
-          title   = "ECS CPU Utilization"
-          region  = var.aws_region
-          period  = 60
-          stat    = "Average"
+          title  = "ECS CPU Utilization"
+          region = var.aws_region
+          period = 60
+          stat   = "Average"
           metrics = [
             ["AWS/ECS", "CPUUtilization",
               "ClusterName", var.ecs_cluster_name,
@@ -102,10 +102,10 @@ resource "aws_cloudwatch_dashboard" "main" {
         width  = 12
         height = 6
         properties = {
-          title   = "ECS Memory Utilisation"
-          region  = var.aws_region
-          period  = 60
-          stat    = "Average"
+          title  = "ECS Memory Utilisation"
+          region = var.aws_region
+          period = 60
+          stat   = "Average"
           metrics = [
             ["AWS/ECS", "MemoryUtilization",
               "ClusterName", var.ecs_cluster_name,
@@ -121,10 +121,10 @@ resource "aws_cloudwatch_dashboard" "main" {
         width  = 12
         height = 6
         properties = {
-          title   = "ALB Request Count"
-          region  = var.aws_region
-          period  = 60
-          stat    = "Sum"
+          title  = "ALB Request Count"
+          region = var.aws_region
+          period = 60
+          stat   = "Sum"
           metrics = [
             ["AWS/ApplicationELB", "RequestCount", "LoadBalancer", var.alb_arn_suffix]
           ]
@@ -137,10 +137,10 @@ resource "aws_cloudwatch_dashboard" "main" {
         width  = 12
         height = 6
         properties = {
-          title   = "ALB 5XX Errors"
-          region  = var.aws_region
-          period  = 60
-          stat    = "Sum"
+          title  = "ALB 5XX Errors"
+          region = var.aws_region
+          period = 60
+          stat   = "Sum"
           metrics = [
             ["AWS/ApplicationELB", "HTTPCode_ELB_5XX_Count", "LoadBalancer", var.alb_arn_suffix],
             ["AWS/ApplicationELB", "HTTPCode_Target_5XX_Count", "LoadBalancer", var.alb_arn_suffix]

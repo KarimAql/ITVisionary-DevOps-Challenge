@@ -69,7 +69,7 @@ data "aws_iam_policy_document" "cicd_assume_role" {
     condition {
       test     = "StringLike"
       variable = "token.actions.githubusercontent.com:sub"
-      values = ["repo:${var.github_org_repo}:*"]
+      values   = ["repo:${var.github_org_repo}:*"]
     }
     condition {
       test     = "StringEquals"
@@ -97,9 +97,9 @@ resource "aws_iam_role_policy" "cicd_inline" {
     Version = "2012-10-17"
     Statement = [
       {
-        Sid    = "ECRAuth"
-        Effect = "Allow"
-        Action = ["ecr:GetAuthorizationToken"]
+        Sid      = "ECRAuth"
+        Effect   = "Allow"
+        Action   = ["ecr:GetAuthorizationToken"]
         Resource = "*"
       },
       {
@@ -137,7 +137,7 @@ resource "aws_iam_role_policy" "cicd_inline" {
           aws_iam_role.task.arn,
         ]
       },
-     # state locking is handled via S3 lockfiles
+      # state locking is handled via S3 lockfiles
       {
         Sid    = "TerraformState"
         Effect = "Allow"

@@ -1,11 +1,11 @@
 # This module creates HTTPS listener and actions optionally if an SSL cert exists, I don't have a cert so it will use HTTP when deployed
 
 resource "aws_lb" "main" {
-  name               = "${var.project_name}-${var.environment}-alb"
-  internal           = false
-  load_balancer_type = "application"
-  security_groups    = [var.alb_sg_id]
-  subnets            = var.public_subnet_ids
+  name                       = "${var.project_name}-${var.environment}-alb"
+  internal                   = false
+  load_balancer_type         = "application"
+  security_groups            = [var.alb_sg_id]
+  subnets                    = var.public_subnet_ids
   enable_deletion_protection = false
   drop_invalid_header_fields = true
 
@@ -50,7 +50,7 @@ resource "aws_lb_listener" "http" {
     type = var.certificate_arn != "" ? "redirect" : "forward" # redirect if cert exists, forward if not
 
     dynamic "redirect" {
-      for_each = var.certificate_arn != "" ? [1] : [] 
+      for_each = var.certificate_arn != "" ? [1] : []
       content {
         port        = "443"
         protocol    = "HTTPS"

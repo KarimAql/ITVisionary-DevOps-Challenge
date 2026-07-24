@@ -33,36 +33,36 @@ module "iam" {
 module "alb" {
   source = "./modules/alb"
 
-  project_name       = var.project_name
-  environment        = var.environment
-  vpc_id             = module.vpc.vpc_id
-  public_subnet_ids  = module.vpc.public_subnet_ids
-  alb_sg_id          = module.security_groups.alb_sg_id
-  container_port     = var.container_port
-  health_check_path  = var.health_check_path
+  project_name      = var.project_name
+  environment       = var.environment
+  vpc_id            = module.vpc.vpc_id
+  public_subnet_ids = module.vpc.public_subnet_ids
+  alb_sg_id         = module.security_groups.alb_sg_id
+  container_port    = var.container_port
+  health_check_path = var.health_check_path
 }
 
 module "ecs" {
   source = "./modules/ecs"
 
-  project_name              = var.project_name
-  environment               = var.environment
-  aws_region                = var.aws_region
-  vpc_id                    = module.vpc.vpc_id
-  private_subnet_ids        = module.vpc.private_subnet_ids
-  ecs_sg_id                 = module.security_groups.ecs_sg_id
-  alb_target_group_arn      = module.alb.target_group_arn
-  task_execution_role_arn   = module.iam.task_execution_role_arn
-  task_role_arn             = module.iam.task_role_arn
-  ecr_repository_name       = var.ecr_repository_name
-  container_image_tag       = var.container_image_tag
-  container_port            = var.container_port
-  ecs_task_cpu              = var.ecs_task_cpu
-  ecs_task_memory           = var.ecs_task_memory
-  ecs_desired_count         = var.ecs_desired_count
-  ecs_min_capacity          = var.ecs_min_capacity
-  ecs_max_capacity          = var.ecs_max_capacity
-  cpu_scale_out_threshold   = var.cpu_scale_out_threshold
+  project_name            = var.project_name
+  environment             = var.environment
+  aws_region              = var.aws_region
+  vpc_id                  = module.vpc.vpc_id
+  private_subnet_ids      = module.vpc.private_subnet_ids
+  ecs_sg_id               = module.security_groups.ecs_sg_id
+  alb_target_group_arn    = module.alb.target_group_arn
+  task_execution_role_arn = module.iam.task_execution_role_arn
+  task_role_arn           = module.iam.task_role_arn
+  ecr_repository_name     = var.ecr_repository_name
+  container_image_tag     = var.container_image_tag
+  container_port          = var.container_port
+  ecs_task_cpu            = var.ecs_task_cpu
+  ecs_task_memory         = var.ecs_task_memory
+  ecs_desired_count       = var.ecs_desired_count
+  ecs_min_capacity        = var.ecs_min_capacity
+  ecs_max_capacity        = var.ecs_max_capacity
+  cpu_scale_out_threshold = var.cpu_scale_out_threshold
 }
 
 module "monitoring" {
