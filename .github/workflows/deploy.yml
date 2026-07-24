@@ -73,19 +73,17 @@ jobs:
         with:
           directory: terraform
           framework: terraform
-          # Fail the pipeline on CRITICAL or HIGH findings
+          # Severity filtering requires a Prisma Cloud API key, so I removed the filter
           soft_fail: false
-          check: "HIGH,CRITICAL"
-          output_format: cli
-          # Upload SARIF results so they appear in the Security tab
-          output_file_path: checkov-results.sarif
+          output_format: sarif
+          output_file_path: results/
           download_external_modules: false
 
       - name: Upload Checkov SARIF
-        uses: github/codeql-action/upload-sarif@v3
+        uses: github/codeql-action/upload-sarif@v4
         if: always()
         with:
-          sarif_file: checkov-results.sarif
+          sarif_file: results/results_sarif.sarif
 
   plan:
     name: Terraform Plan
