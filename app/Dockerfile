@@ -5,6 +5,9 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Installing curl since it's needed for the ECS container health check
+RUN apt-get update && apt-get install -y --no-install-recommends curl && rm -rf /var/lib/apt/lists/*
+
 # non-root user for security
 RUN addgroup --system appgroup && adduser --system --ingroup appgroup appuser
 
